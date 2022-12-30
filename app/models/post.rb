@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   validates :category, presence: true
 
   has_one_attached :image
+  has_many :post_items
+  has_many :boards, through: :post_items
 
   validate :validate_attachment_filetypes
 

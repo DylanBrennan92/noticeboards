@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   get "posts/new", to: "posts#new", as: :create_post
   post "posts/create", to: "home#index"
 
+  get "boards", to: "boards#index", as: :all_boards
+  get "boards/new", to: "boards#new", as: :create_board
+
+
   #destroy session to log out user
   delete "logout", to: "sessions#destroy"
   

@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @board %>
-
-<div>
-  <%= link_to "Edit this board", edit_board_path(@board) %> |
-  <%= link_to "Back to boards", boards_path %>
-
-  <%= button_to "Destroy this board", @board, method: :delete %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @board.title %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Noticeboard #<%= @board.id %></h6>
+    <p class="card-text"><%= @board.body%></p>
+    <%= link_to "Edit this board", edit_board_path(@board), class: "card-link"%> |
+    <%= link_to "Back to boards", boards_path , class:"card-link"%>
+  </div>
 </div>
