@@ -1,14 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Boards</h1>
-
-<div id="boards">
-  <% @boards.each do |board| %>
-    <%= render board %>
-    <p>
-      <%= link_to "Show this board", board %>
-    </p>
-  <% end %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <ul class="list-group">
+            <h1>Viewing all Noticeboards</h1>
+                <% @boards.each do |board| %>
+                    <% unless board.archived?%>
+                   <li class="list-group-item">
+                      <%= link_to board.title, board%>
+                   </li>
+                    <%end%>
+                <% end %>
+            </ul>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
 </div>
-
-<%= link_to "New board", new_board_path %>

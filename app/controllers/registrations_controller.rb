@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+    skip_before_action :require_user_logged_in 
+    
     def new
         @user = User.new
     end
@@ -8,7 +10,7 @@ class RegistrationsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to root_path, notice: "Account successfully created"
         else
-            render :new
+            render :new , notice: 'Issue creating Account'
         end
     end
 

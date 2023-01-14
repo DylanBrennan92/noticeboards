@@ -1,70 +1,50 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[ show edit update destroy ]
 
-  # GET /boards or /boards.json
   def index
     @boards = Board.all
   end
 
-  # GET /boards/1 or /boards/1.json
   def show
+    @board = Board.find(params[:id])
   end
 
-  # GET /boards/new
-  def new
+  def new 
     @board = Board.new
   end
 
-  # GET /boards/1/edit
-  def edit
-  end
-
-  # POST /boards or /boards.json
   def create
     @board = Board.new(board_params)
 
-    respond_to do |format|
-      if @board.save
-        format.html { redirect_to board_url(@board), notice: "Board was successfully created." }
-        format.json { render :show, status: :created, location: @board }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
-      end
+    if @board.save
+      redirect_to @board
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /boards/1 or /boards/1.json
+  def edit
+    @board = Board.find(params[:id])
+  end
+
   def update
-    respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to board_url(@board), notice: "Board was successfully updated." }
-        format.json { render :show, status: :ok, location: @board }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @board.errors, status: :unprocessable_entity }
-      end
+    @board = Board.find(params[:id])
+
+    if @board.update(board_params)
+      redirect_to @board
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /boards/1 or /boards/1.json
   def destroy
+    @board = Board.find(params[:id])
     @board.destroy
 
-    respond_to do |format|
-      format.html { redirect_to boards_url, notice: "Board was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: "Board was successfully deleted"
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_board
-      @board = Board.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def board_params
-      params.require(:board).permit(:title, :body)
-    end
+  private 
+  def board_params
+    params.require(:board).permit(:title, :description, :status, :board_owner)
+  end
 end

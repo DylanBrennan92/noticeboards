@@ -1,28 +1,21 @@
-<div id="<%= dom_id post %>">
-
-
-  <div class="card" style="width: 21rem;">
-    <% if post.image.present?%>
+<% unless post.archived?%>
+<div class="col">
+<div class="card" style="width: 21rem;">
+    <%
+=begin%>
+ <% if post.image.present?%>
       <%= image_tag post.image.variant(resize_to_limit: [350, 350]), class: "card-img-top"%>
-    <%end %>
+    <%end %> 
+<%
+=end%>
     <!--<img src="..." class="card-img-top" alt="..."> -->
     <div class="card-body">
       <h5 class="card-title"><%= post.title %></h5>
       <p class="card-text"><%= post.body %></p>
+      <p class="card-text"><%= post.category%></p>
     </div>
-  </div>
+</div>
 
-
-<!--  <p>-->
-<!--    <strong>Category</strong>-->
-    <%#= post.category %>
-<!--  </p>-->
-
-
-<!--  <p>-->
-<!--    <strong>User id:</strong>-->
-    <%#= post.user_id %>
-<!--  </p>-->
-
-
-</div><!-- end div don't touch -->
+<p><%=button_to 'Delete', [post.board, post], method: :delete %></p>
+<%end%>
+</div>

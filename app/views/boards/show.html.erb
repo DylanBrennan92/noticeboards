@@ -1,9 +1,21 @@
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title"><%= @board.title %></h5>
-    <h6 class="card-subtitle mb-2 text-muted">Noticeboard #<%= @board.id %></h6>
-    <p class="card-text"><%= @board.body%></p>
-    <%= link_to "Edit this board", edit_board_path(@board), class: "card-link"%> |
-    <%= link_to "Back to boards", boards_path , class:"card-link"%>
-  </div>
+<h3><%=@board.title %></h1>
+<p><%= @board.description %></p>
+
+<% if Current.user.username = @board.board_owner%>
+    <%= render 'owneroptions'%>
+<%end%>
+
+
+<h4>Posts</h2>
+<div class="container-fluid">
+<%post_count = @board.posts.count %>
+<p>post_count is <%= post_count%></p>
+<div class="row">
+    <%= render @board.posts%>  
 </div>
+
+</div>
+<h3>Add a post to this board</h3>
+<%= render 'posts/form' %>
+
+

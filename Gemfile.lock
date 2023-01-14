@@ -93,9 +93,14 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.11.0)
+    faker (3.1.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -120,11 +125,16 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    meilisearch (0.21.1)
+      httparty (>= 0.17.1, < 0.22.0)
+    meilisearch-rails (0.8.0)
+      meilisearch (~> 0.21.0)
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multi_xml (0.6.0)
     net-imap (0.3.2)
       date
       net-protocol
@@ -172,6 +182,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    redis (4.8.0)
     regexp_parser (2.6.1)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -220,12 +231,15 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails
+  faker
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  meilisearch-rails (~> 0.8.0)
   pg
   puma (~> 5.0)
   rails (~> 7.0.4)
+  redis (~> 4.0)
   ruby-vips (~> 2.1, >= 2.1.4)
   selenium-webdriver
   sprockets-rails

@@ -1,6 +1,9 @@
 class Board < ApplicationRecord
-    has_many :memberships
-    has_many :post_items
-    has_many :users, through: :memberships
-    has_many :posts, through: :post_items
+    include Visible
+
+    has_many :posts, dependent: :destroy
+
+    validates :title, presence: true, length: {minimum: 3}
+    validates :description, presence: true, length: {minimum: 8}
+    validates :status, presence: true
 end

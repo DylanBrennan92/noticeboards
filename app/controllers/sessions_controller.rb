@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+    skip_before_action :require_user_logged_in
+
+
     #log out a user by destroying the session
     def destroy
         session[:user_id] = nil
@@ -22,4 +25,7 @@ class SessionsController < ApplicationController
             render :new
         end
     end
+ 
+
+    
 end

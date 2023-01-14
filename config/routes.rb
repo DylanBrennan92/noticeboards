@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :boards
-  resources :posts
+  
+  resources :boards do
+    resources :posts
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -34,6 +36,8 @@ Rails.application.routes.draw do
 
   get "boards", to: "boards#index", as: :all_boards
   get "boards/new", to: "boards#new", as: :create_board
+  post "boards/:id/edit", to: "boards#edit"
+  #patch "boards/:id/edit", to: "boards#update"
 
 
   #destroy session to log out user

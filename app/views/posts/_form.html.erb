@@ -1,37 +1,31 @@
-<div class="container content-center">
-
-  <%= form_with(model: post) do |form| %>
-    <% if form.object.errors.any? %>
-      <div class="alert alert-danger">
+<%= form_with model: [@board, @board.posts.build] do |form| %>
+<% if form.object.errors.any? %>
+    <div class="alert alert-danger">
         <% form.object.errors.full_messages.each do |message| %>
           <div><%= message %></div>
         <% end %>
-      </div>
-    <% end %>
+    </div>
+<% end %>
+<div class="form-group">
+    <%= form.label :title,style: "display: block"%>
+    <%= form.text_field :title, class: "form-control mt-1"%>
 
-    <form>
-      <div class="form-group">
-        <%= form.label :title, style: "display: block" %>
-        <%= form.text_field :title, class: "form-control mt-1" %>
+    <%= form.label :body,style: "display: block"%>
+    <%= form.text_area :body, class: "form-control mt-1"%>
 
-        <%= form.label :body, style: "display: block" %>
-        <%= form.text_area :body, class: "form-control mt-1" %>
+    <%= form.label :image , class: "mt-1"  %>
+    <%= form.file_field :image, class: "form-control mt-1" ,accept: ".png, .jpg, .jpeg"%>
 
-        <%= form.label :image , class: "mt-1"  %>
-        <%= form.file_field :image, class: "form-control mt-1" ,accept: ".png, .jpg, .jpeg"%>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category, ['For sale', 'Looking to buy', 'Accommodation', 'Sports', 'Education', 'Services', 'Events'] ,
+    class: "form-control mt-1 mb-3"%>
 
-        <%= form.label :category, style: "display: block" %>
-        <%= form.select :category, ['For sale', 'Looking to buy', 'Accommodation', 'Sports', 'Education', 'Services', 'Events'] ,class: "form-control mt-1 mb-3"%>
-
-
-
-      </div>
-
-      <div>
-        <%= form.submit class: "btn btn-primary mt-4" %>
-      </div>
-    </form>
-  <% end %>
+  <%= form.label :status, style: "display: block"%>
+  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' ,class: "form-control mt-1 mb-3"%>
 
 
 </div>
+ <div>
+    <%= form.submit class: "btn btn-primary mt-4" %>
+</div>
+<%end%>

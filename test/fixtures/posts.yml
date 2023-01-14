@@ -2,10 +2,14 @@
 
 one:
   title: MyString
+  posted_by: MyString
+  category: MyString
   body: MyText
-  User: one
+  board: one
 
 two:
   title: MyString
+  posted_by: MyString
+  category: MyString
   body: MyText
-  User: two
+  board: two

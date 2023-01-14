@@ -1,27 +1,27 @@
-<%= form_with(model: board) do |form| %>
-  <% if board.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(board.errors.count, "error") %> prohibited this board from being saved:</h2>
-
-      <ul>
-        <% board.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :Location, style: "display: block" %>
+<%= form_with model: @board do |form| %>
+    <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+            <% form.object.errors.full_messages.each do |message| %>
+            <div><%= message %></div>
+            <% end %>
+        </div>
+    <%end%>
+  <div class="mb-3">
+    <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :Description, style: "display: block" %>
-    <%= form.text_area :body %>
+  <div class="mb-3">
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
   </div>
 
-  <div>
+  <%= form.label :status, style: "display: block"%>
+  <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' ,class: "form-control mt-1 mb-3"%>
+
+  <span style="display:none;"><%=form.select :board_owner, [Current.user.username], selected: Current.user.username%></span>
+
+  <div class="mb-3">
     <%= form.submit %>
   </div>
 <% end %>

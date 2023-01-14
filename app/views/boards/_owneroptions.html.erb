@@ -1,0 +1,4 @@
+<ul>
+    <li><%= button_to "Edit Board", edit_board_path(@board)%></li>
+    <li><%=button_to 'Delete Board', @board, method: :delete, form: { data: { 'turbo-method': :delete, 'turbo-confirm': 'Are you sure?' }}%></li>
+</ul>
