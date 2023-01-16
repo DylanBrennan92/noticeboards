@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "home#index"
 
+  get "search", to: "boards#search"
+
   #basic routes to test - edit later
   get "activity_log", to: "activity_log#index", as: :activity_log
   get "home", to: "home#index", as: :home
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
 
   get "boards", to: "boards#index", as: :all_boards
   get "boards/new", to: "boards#new", as: :create_board
+  get "board/:id", to: "boards#show", as: :show_board
   post "boards/:id/edit", to: "boards#edit"
   #patch "boards/:id/edit", to: "boards#update"
 

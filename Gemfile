@@ -71,6 +71,4 @@ group :test do
   gem "webdrivers"
 end
 
-gem "meilisearch-rails", "~> 0.8.0"
-
 gem 'faker'

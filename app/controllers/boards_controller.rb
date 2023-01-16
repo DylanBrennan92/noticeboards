@@ -43,6 +43,11 @@ class BoardsController < ApplicationController
     redirect_to root_path, notice: "Board was successfully deleted"
   end
 
+
+  def search
+    @boards = Board.where("title ILIKE ?", "%" + params[:q] + "%")
+  end
+
   private 
   def board_params
     params.require(:board).permit(:title, :description, :status, :board_owner)
